@@ -6,5 +6,6 @@ const game = new Game('game', 512, 256);
 
 (function gameLoop() {
   game.render();
+  // Stop Rendering 
   requestAnimationFrame(gameLoop);
 })();

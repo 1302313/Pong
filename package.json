@@ -1,9 +1,9 @@
 {
   "name": "pong-svg",
   "version": "0.1.0",
-  "description": "An SVG Pong game.",
+  "description": "Your regular SVG Pong game.",
   "license": "ISC",
-  "author": "Your Name <email@email.com>",
+  "author": "Adham <1302313>",
   "main": "src/index.js",
   "scripts": {
     "start": "parcel index.html -p 3000",
