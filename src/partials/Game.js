@@ -4,6 +4,7 @@ import { SVG_NS, KEYS, PadOptions } from "../settings";
 import Board from './Board';
 import Pad from './Pad';
 import Ball from './Ball';
+import Score from './Score';
 // Megaball
 
 
@@ -16,7 +17,7 @@ export default class Game {
 
     // Board
     this.gameElement = document.getElementById(this.element);
-    this.board = new Board(this.width, this.height, this.padcolor, fillet);
+    this.board = new Board(this.width, this.height, this.padColor, fillet);
 
     // this.paddleWidth = 8;
     // this.paddleHeight = 56;
@@ -43,6 +44,13 @@ export default class Game {
       KEYS.up,
       KEYS.down,
     );
+
+    // ScoreBoard
+
+    this.score1 = new Score(this.width / 2 - 150, 30, 50)
+    this.score2 = new Score(this.width / 2 + 110, 30, 50)
+
+    // Pause
 
     document.addEventListener('keydown', (event) => {
       switch (event.key) {
@@ -75,7 +83,8 @@ export default class Game {
 
     this.ball.render(svg, this.player1, this.player2);
 
-
+    this.score1.render(svg, this.player1.score)
+    this.score2.render(svg, this.player2.score)
     // More code goes here....
   }
 }

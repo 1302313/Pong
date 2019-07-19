@@ -1,4 +1,10 @@
 import { SVG_NS } from "../settings"
+import padSound from "../../public/sounds/pong-01.wav";
+import goalSound from "../../public/sounds/pong-05.wav";
+import hitSound from "../../public/sounds/pong-03.wav";
+import hit1Sound from "../../public/sounds/pong-04.wav";
+
+
 export default class Ball {
     constructor(radius, boardWidth, boardHeight, ballColor = "white") {
         this.radius = radius;
@@ -8,7 +14,9 @@ export default class Ball {
         //   this.ballXPosition = ballXPosition;
         //   this.ballYPosition = ballYPosition;
         this.ballColor = ballColor;
-
+        this.padSound = new Audio(padSound);
+        this.goalSound = new Audio(goalSound);
+        //reset
         this.reset();
     }
 
@@ -47,6 +55,7 @@ export default class Ball {
                 (this.y >= player2.y && this.y <= player2.y + player2.height)
             ) {
                 this.vx *= -1;
+                this.padSound.play();
             }
         } else {
             if (this.x - this.radius <= player1.x + player1.width &&
@@ -54,10 +63,16 @@ export default class Ball {
                 (this.y >= player1.y && this.y <= player1.y + player1.height)
             ) {
                 this.vx *= -1;
+                this.padSound.play();
             }
         }
     };
-
+    goal(player) {
+        player.score++;
+        console.log("Player score: ", player.score);
+        this.reset();
+        this.goalSound.play();
+    }
 
     render(svg, player1, player2) {
 
@@ -65,7 +80,7 @@ export default class Ball {
         // += this.ax;
         this.y += this.vy;
 
-        console.log(player1);
+        // console.log(player1);
         this.wallBounce();
         this.padBounce(player1, player2);
 
@@ -77,6 +92,17 @@ export default class Ball {
 
         // Give birth to "SVG" element
         svg.appendChild(circle);
+
+        const rightGoal = this.x + this.radius >= this.boardWidth;
+        const leftGoal = this.x - this.radius <= 0;
+
+        if (rightGoal) {
+            this.goal(player1);
+            this.direction = 1;
+        } else if (leftGoal) {
+            this.goal(player2);
+            this.direction = -1;
+        }
     }
 
 
