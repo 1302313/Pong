@@ -7,3 +7,11 @@ export const KEYS = {
     down: "ArrowDown",     // player 2 down key
     spaceBar: " ", // we'll use this later...
   }
+
+export const PadOptions = {
+paddleWidth: 8,
+paddleHeight: 56,
+boardGap: 30,
+}
+
+// export const Border

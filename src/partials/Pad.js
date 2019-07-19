@@ -1,9 +1,9 @@
 // pad.up()
 // pad.down()
-import { SVG_NS } from "../settings"
+import { SVG_NS } from "../settings";
 
 export default class Paddle {
-    constructor(boardHeight, width, height, x, y, padcolor = '#353535') {
+    constructor(boardHeight, width, height, x, y, padcolor, up, down) {
         this.boardHeight = boardHeight;
         this.width = width;
         this.height = height;
@@ -16,20 +16,34 @@ export default class Paddle {
 
 
         document.addEventListener("keydown", event => {
-            document.addEventListener("keydown", event => {
-                switch (event.key) {
-                    case up:
-                        console.log("up");
-                        break;
-                    case down:
-                        console.log("down");
-                        break;
-                }
-            });
+
+            switch (event.key) {
+                case up:
+                    this.up()
+                    console.log(this.y);
+                    break;
+                case down:
+                    this.down()
+                    console.log(this.y);
+                    break;
+            }
+
         });
-
-
     }
+
+    up() {
+        // console.log('move up');
+        // this.y = this.y - this.speed;
+        this.y = Math.max(0, this.y - this.speed);
+    }
+
+    down() {
+        // this.y = this.y + this.speed;
+        this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
+    }
+
+
+
     // What to render?
     render(svg) {
         let rect = document.createElementNS(SVG_NS, 'rect');

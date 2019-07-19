@@ -1,8 +1,9 @@
-import { SVG_NS, KEYS } from "../settings";
+import { SVG_NS, KEYS, PadOptions } from "../settings";
 
 // Import Object Files to Game
 import Board from './Board';
 import Pad from './Pad';
+import Ball from './Ball';
 
 
 export default class Game {
@@ -10,40 +11,46 @@ export default class Game {
     this.element = element;
     this.width = width;
     this.height = height;
-
     const fillet = 20;
 
     // Board
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height, this.padcolor, fillet);
-    this.paddleWidth = 8;
-    this.paddleHeight = 56;
-    this.boardGap = 10;
 
+    // this.paddleWidth = 8;
+    // this.paddleHeight = 56;
+    // this.boardGap = 30;
+
+    // Paddle 
     this.player1 = new Pad(
       this.height,
-      this.paddleWidth,
-      this.paddleHeight,
-      this.boardGap,
-      ((this.height - this.paddleHeight) / 2),
-      'Crimson',
-      KEYS.up,
-      KEYS.down,
+      PadOptions.paddleWidth,
+      PadOptions.paddleHeight,
+      PadOptions.boardGap,
+      ((this.height - PadOptions.paddleHeight) / 2),
+      'crimson',
+      KEYS.a,
+      KEYS.z,
     );
     this.player2 = new Pad(
       this.height,
-      this.paddleWidth,
-      this.paddleHeight,
-      ((this.width - (this.boardGap + this.paddleWidth)),
-      ((this.height - this.paddleHeight) / 2)),
-      'Green');
+      PadOptions.paddleWidth,
+      PadOptions.paddleHeight,
+      this.width - (PadOptions.boardGap + PadOptions.paddleWidth),
+      ((this.height - PadOptions.paddleHeight) / 2),
+      'green',
+      KEYS.up,
+      KEYS.down,
+    );
+
+    this.ball = new Ball(10, this.width, this.height, '#fff');
   }
 
 
 
   // Give Birth to Parent
   render() {
-    this.gameElement.innerHTML = ""; // Clear HTML before appending to fix a render bug 
+    this.gameElement.innerHTML = ""; // Clear HTML before appending. This is to fix a render bug.
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
     svg.setAttributeNS(null, "height", this.height);
@@ -52,6 +59,9 @@ export default class Game {
     this.board.render(svg);
     this.player1.render(svg);
     this.player2.render(svg);
+    this.ball.render(svg);
+
+
     // More code goes here....
   }
 }
