@@ -79,8 +79,47 @@ body {
   width: 100%;
 }
 
+.game-animator{
+margin: 0 auto;
+text-align: center;
+height: 10vh;
+}
+
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem; 
   text-align: center;
+}
+
+h2{
+  font-size: 1.75rem;
+  margin-top: 1rem;
+  text-align: center;
+} 
+
+game-animator-container{
+  
+}
+
+.typewriter {
+  color: #2d2d2d;
+  overflow: hidden; /* Ensures the content is not revealed until the animation is present */
+  border-right: 0.15em solid greenyellow; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em;
+  animation: typing 7s steps(25, end),
+    blink-caret 1s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgba(255, 166, 0, 0.561) }
 }

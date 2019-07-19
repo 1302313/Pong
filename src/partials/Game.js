@@ -4,6 +4,7 @@ import { SVG_NS, KEYS, PadOptions } from "../settings";
 import Board from './Board';
 import Pad from './Pad';
 import Ball from './Ball';
+// Megaball
 
 
 export default class Game {
@@ -43,6 +44,13 @@ export default class Game {
       KEYS.down,
     );
 
+    document.addEventListener('keydown', (event) => {
+      switch (event.key) {
+        case KEYS.spaceBar:
+          this.pause = !this.pause
+      }
+    });
+
     this.ball = new Ball(10, this.width, this.height, '#fff');
   }
 
@@ -50,6 +58,11 @@ export default class Game {
 
   // Give Birth to Parent
   render() {
+
+    if (this.pause) {
+      return;
+    }
+
     this.gameElement.innerHTML = ""; // Clear HTML before appending. This is to fix a render bug.
     let svg = document.createElementNS(SVG_NS, "svg");
     svg.setAttributeNS(null, "width", this.width);
