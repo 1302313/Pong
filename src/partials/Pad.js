@@ -3,7 +3,7 @@
 import { SVG_NS, KEYS } from "../settings";
 
 export default class Paddle {
-    constructor(boardHeight, width, height, x, y, padcolor, upKey, downKey) {
+    constructor(boardHeight, width, height, x, y, padColor, upKey, downKey) {
         this.boardHeight = boardHeight;
         this.width = width;
         this.height = height;
@@ -11,7 +11,7 @@ export default class Paddle {
         this.y = y;
         this.speed = 10;
         this.score = 0;
-        this.padcolor = padcolor;
+        this.padColor = padColor;
         this.upKey = upKey;
         this.downKey = downKey;
 
@@ -56,6 +56,7 @@ export default class Paddle {
     // What to render?
     render(svg) {
 
+        //Keystate
         if (this.keyState[KEYS.a] && this.upKey === KEYS.a) {
             this.up();
         };
@@ -74,7 +75,7 @@ export default class Paddle {
 
 
         let rect = document.createElementNS(SVG_NS, 'rect');
-        rect.setAttributeNS(null, 'fill', this.padcolor);
+        rect.setAttributeNS(null, 'fill', this.padColor);
         rect.setAttributeNS(null, 'width', this.width);
         rect.setAttributeNS(null, 'height', this.height);
         rect.setAttributeNS(null, 'x', this.x);
@@ -82,6 +83,6 @@ export default class Paddle {
 
         // Give birth to "SVG" element
         svg.appendChild(rect);
-    }
+    };
 
 }

@@ -40,12 +40,34 @@ export default class Ball {
             this.vy *= -1;
     }
 
-    render(svg) {
+    padBounce(player1, player2) {
+        if (this.vx > 0) {
+            if (this.x + this.radius >= player2.x &&
+                this.x + this.radius <= player2.x + player2.width &&
+                (this.y >= player2.y && this.y <= player2.y + player2.height)
+            ) {
+                this.vx *= -1;
+            }
+        } else {
+            if (this.x - this.radius <= player1.x + player1.width &&
+                this.x - this.radius >= player1.x &&
+                (this.y >= player1.y && this.y <= player1.y + player1.height)
+            ) {
+                this.vx *= -1;
+            }
+        }
+    };
+
+
+    render(svg, player1, player2) {
 
         this.x += this.vx
         // += this.ax;
         this.y += this.vy;
+
+        console.log(player1);
         this.wallBounce();
+        this.padBounce(player1, player2);
 
         let circle = document.createElementNS(SVG_NS, 'circle');
         circle.setAttributeNS(null, 'fill', this.ballColor);

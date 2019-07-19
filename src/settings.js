@@ -6,12 +6,12 @@ export const KEYS = {
     up: "ArrowUp",       // player 2 up key
     down: "ArrowDown",     // player 2 down key
     spaceBar: " ", // we'll use this later...
-  }
+}
 
 export const PadOptions = {
-paddleWidth: 8,
-paddleHeight: 56,
-boardGap: 30,
+    paddleWidth: 8,
+    paddleHeight: 80,
+    boardGap: 30,
 }
 
 // export const Border
