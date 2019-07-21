@@ -11,7 +11,10 @@ export const KEYS = {
 export const PadOptions = {
   padWidth: 8,
   padHeight: 80,
+  padSpeed: 10,
   boardGap: 30
 };
+
+export const BallOptions = {};
 
 // export const Border

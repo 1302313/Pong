@@ -5,7 +5,7 @@ import goalSound from "../../public/sounds/pong-05.wav";
 // import hit1Sound from "../../public/sounds/pong-04.wav";
 
 export default class Ball {
-  constructor(radius, boardWidth, boardHeight, ballColor = "white") {
+  constructor(radius, boardWidth, boardHeight, ballColor) {
     this.radius = radius;
     this.boardWidth = boardWidth;
     this.boardHeight = boardHeight;
@@ -32,7 +32,7 @@ export default class Ball {
       this.vy =
         Math.floor(Math.random() * 2 - 2) *
         this.direction[
-          (Math.floor(Math.random()), Math.floor(Math.random()) * -1)
+          (Math.floor(Math.random()), Math.floor(Math.random()) * 1)
         ];
     }
   }

@@ -1,13 +1,23 @@
 import { SVG_NS, KEYS } from "../settings";
 
 export default class Pad {
-  constructor(boardHeight, width, height, x, y, padColor, upKey, downKey) {
+  constructor(
+    boardHeight,
+    width,
+    height,
+    x,
+    y,
+    speed,
+    padColor,
+    upKey,
+    downKey
+  ) {
     this.boardHeight = boardHeight;
     this.width = width;
     this.height = height;
     this.x = x;
     this.y = y;
-    this.speed = 10;
+    this.speed = speed;
     this.score = 0;
     this.padColor = padColor;
     this.upKey = upKey;

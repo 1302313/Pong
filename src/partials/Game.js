@@ -25,6 +25,7 @@ export default class Game {
       PadOptions.padHeight,
       PadOptions.boardGap,
       (this.height - PadOptions.padHeight) / 2,
+      PadOptions.padSpeed,
       "crimson",
       KEYS.a,
       KEYS.z
@@ -36,6 +37,7 @@ export default class Game {
       PadOptions.padHeight,
       this.width - (PadOptions.boardGap + PadOptions.padWidth),
       (this.height - PadOptions.padHeight) / 2,
+      PadOptions.padSpeed,
       "green",
       KEYS.up,
       KEYS.down
@@ -53,8 +55,8 @@ export default class Game {
       }
     });
     // Ball
-    this.ball1 = new Ball(10, this.width, this.height, "#fff");
-    this.ball2 = new Ball(10, this.width, this.height, "#fff");
+    this.ball1 = new Ball(10, this.width, this.height, "red");
+    this.ball2 = new Ball(10, this.width, this.height, "blue");
   }
 
   // Give Birth to Parent
@@ -80,7 +82,7 @@ export default class Game {
     this.ball1.render(svg, this.player1, this.player2);
 
     if (this.score1 === 5 || this.score2 === 5) {
-      this.ball2.render(svg, this.player1, this.player2);
+      return this.ball2.render(svg, this.player1, this.player2);
     }
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
