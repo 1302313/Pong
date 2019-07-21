@@ -1,12 +1,11 @@
 import { SVG_NS, KEYS, PadOptions } from "../settings";
 
 // Import Object Files to Game
-import Board from './Board';
-import Pad from './Pad';
-import Ball from './Ball';
-import Score from './Score';
+import Board from "./Board";
+import Pad from "./Pad";
+import Ball from "./Ball";
+import Score from "./Score";
 // Megaball
-
 
 export default class Game {
   constructor(element, width, height) {
@@ -19,54 +18,46 @@ export default class Game {
     this.gameElement = document.getElementById(this.element);
     this.board = new Board(this.width, this.height, this.padColor, fillet);
 
-    // this.paddleWidth = 8;
-    // this.paddleHeight = 56;
-    // this.boardGap = 30;
-
-    // Paddle 
+    // Paddle
     this.player1 = new Pad(
       this.height,
-      PadOptions.paddleWidth,
-      PadOptions.paddleHeight,
+      PadOptions.padWidth,
+      PadOptions.padHeight,
       PadOptions.boardGap,
-      ((this.height - PadOptions.paddleHeight) / 2),
-      'crimson',
+      (this.height - PadOptions.padHeight) / 2,
+      "crimson",
       KEYS.a,
-      KEYS.z,
+      KEYS.z
     );
+
     this.player2 = new Pad(
       this.height,
-      PadOptions.paddleWidth,
-      PadOptions.paddleHeight,
-      this.width - (PadOptions.boardGap + PadOptions.paddleWidth),
-      ((this.height - PadOptions.paddleHeight) / 2),
-      'green',
+      PadOptions.padWidth,
+      PadOptions.padHeight,
+      this.width - (PadOptions.boardGap + PadOptions.padWidth),
+      (this.height - PadOptions.padHeight) / 2,
+      "green",
       KEYS.up,
-      KEYS.down,
+      KEYS.down
     );
 
     // ScoreBoard
+    this.score1 = new Score(this.width / 2 - 150, 30, 50);
+    this.score2 = new Score(this.width / 2 + 110, 30, 50);
 
-    this.score1 = new Score(this.width / 2 - 150, 30, 50)
-    this.score2 = new Score(this.width / 2 + 110, 30, 50)
-
-    // Pause
-
-    document.addEventListener('keydown', (event) => {
+    // Pause using Spacebar
+    document.addEventListener("keydown", event => {
       switch (event.key) {
         case KEYS.spaceBar:
-          this.pause = !this.pause
+          this.pause = !this.pause;
       }
     });
 
-    this.ball = new Ball(10, this.width, this.height, '#fff');
+    this.ball = new Ball(10, this.width, this.height, "#fff");
   }
-
-
 
   // Give Birth to Parent
   render() {
-
     if (this.pause) {
       return;
     }
@@ -76,15 +67,18 @@ export default class Game {
     svg.setAttributeNS(null, "width", this.width);
     svg.setAttributeNS(null, "height", this.height);
     svg.setAttributeNS(null, "viewBox", `0 0 ${this.width} ${this.height}`);
+
+    // SVG in HTML
     this.gameElement.appendChild(svg);
+
     this.board.render(svg);
+
     this.player1.render(svg);
     this.player2.render(svg);
 
     this.ball.render(svg, this.player1, this.player2);
 
-    this.score1.render(svg, this.player1.score)
-    this.score2.render(svg, this.player2.score)
-    // More code goes here....
+    this.score1.render(svg, this.player1.score);
+    this.score2.render(svg, this.player2.score);
   }
 }

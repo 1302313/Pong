@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pong!&trade;</title>
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Pong!&trade;</title>
-</head>
-
-<body>
-	<div class="game-wrapper">
-		<h1>Pong!</h1>
-		<div id="game"></div>
-		<div class="game-animator">
-			<div class="game-animator-container">
-				<h2 class=typewriter>Let The Games Begin!</h2>
-				<button type="button">Test</button>
-			</div>
-
-		</div>
-		<script type="text/javascript" src="./src/index.js"></script>
-</body>
-
+  <body>
+    <div class="game-wrapper">
+      <!-- The ScoreBoard -->
+      <div>
+        <h1>Pong!</h1>
+        <div class="scoreboard">
+          <span class="player-left"></span>
+          <span class="player-right"></span>
+        </div>
+      </div>
+      <!-- The Game -->
+      <div>
+        <div id="game"></div>
+      </div>
+      <!-- The Animator -->
+      <div class="game-animator">
+        <div class="game-animator-container">
+          <h2 class="typewriter">Let The Games Begin!</h2>
+          <button class="main-screen-background" type="button">Test</button>
+          <button class="main-screen-background" type="button">Test</button>
+        </div>
+      </div>
+      <footer></footer>
+    </div>
+    <script type="text/javascript" src="./src/index.js"></script>
+  </body>
 </html>
 <!-- Reference SVG -->
 <!-- <svg xmlns="http://www.w3.org/0013/svg" viewBox="0 0 512px 256px" width="512px" height="256px"> -->
