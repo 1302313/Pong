@@ -77,7 +77,7 @@ export default class Ball {
     player.score++;
     console.log("Player score: ", player.score);
     this.reset();
-    this.goalSound.currentTime()=0; // if multiple score, wav resets.
+    this.goalSound.currentTime = 0; 
     this.goalSound.play();
   }
 
