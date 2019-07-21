@@ -42,8 +42,8 @@ export default class Game {
     );
 
     // ScoreBoard
-    this.score1 = new Score(this.width / 2 - 150, 30, 50);
-    this.score2 = new Score(this.width / 2 + 110, 30, 50);
+    this.score1 = new Score(this.width / 2 - 150, 50, 75);
+    this.score2 = new Score(this.width / 2 + 110, 50, 75);
 
     // Pause using Spacebar
     document.addEventListener("keydown", event => {
@@ -52,8 +52,9 @@ export default class Game {
           this.pause = !this.pause;
       }
     });
-
-    this.ball = new Ball(10, this.width, this.height, "#fff");
+    // Ball
+    this.ball1 = new Ball(10, this.width, this.height, "#fff");
+    this.ball2 = new Ball(10, this.width, this.height, "#fff");
   }
 
   // Give Birth to Parent
@@ -76,8 +77,11 @@ export default class Game {
     this.player1.render(svg);
     this.player2.render(svg);
 
-    this.ball.render(svg, this.player1, this.player2);
+    this.ball1.render(svg, this.player1, this.player2);
 
+    if (this.score1 === 5 || this.score2 === 5) {
+      this.ball2.render(svg, this.player1, this.player2);
+    }
     this.score1.render(svg, this.player1.score);
     this.score2.render(svg, this.player2.score);
   }

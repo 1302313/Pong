@@ -25,17 +25,15 @@ export default class Ball {
 
     while (this.vx === 0 && this.vy === 0) {
       this.vx =
-        Math.floor(Math.random() * 2 - 2) *
+        Math.floor(Math.random() * 10 - 2) *
         this.direction[
           (Math.floor(Math.random()), Math.floor(Math.random()) * -1)
-        ] *
-        (2 - Math.abs(this.vy));
+        ];
       this.vy =
         Math.floor(Math.random() * 2 - 2) *
         this.direction[
           (Math.floor(Math.random()), Math.floor(Math.random()) * -1)
-        ] *
-        (2 - Math.abs(this.vx));
+        ];
     }
   }
   // Ball Bounce Functions
@@ -77,7 +75,7 @@ export default class Ball {
     player.score++;
     console.log("Player score: ", player.score);
     this.reset();
-    this.goalSound.currentTime = 0; 
+    this.goalSound.currentTime = 0;
     this.goalSound.play();
   }
 
