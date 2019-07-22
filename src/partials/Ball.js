@@ -26,9 +26,9 @@ export default class Ball {
     this.vx = 0;
 
     while (this.vy === 0) {
-      this.vy = Math.floor(Math.random() * 10 - 5);
+      this.vy = Math.floor(Math.random() * 11 - 5);
     }
-    this.vx = this.direction * (6 - Math.abs(this.vy));
+    this.vx = this.direction * (9 - Math.abs(this.vy));
   }
 
   // End of Reset function
@@ -70,7 +70,7 @@ export default class Ball {
   goal(player) {
     player.score++;
     console.log("Player score: ", player.score);
-    if (player.score < 2) {
+    if (player.score < 10) {
       this.reset();
     } else {
       alert("Winner");
