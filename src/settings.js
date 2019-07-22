@@ -5,7 +5,9 @@ export const KEYS = {
   z: "z", // player 1 down key
   up: "ArrowUp", // player 2 up key
   down: "ArrowDown", // player 2 down key
-  spaceBar: " " // we'll use this later...
+  spaceBar: " ", // Pause Game
+  p: "p", // Fire balls from Player 2 (to Left Side)
+  q: "q" // Fire balls from Player 1 (to right Side)
 };
 
 export const PadOptions = {

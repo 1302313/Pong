@@ -1,4 +1,5 @@
 import { SVG_NS } from "../settings";
+import Pad from "./Pad";
 import padSound from "../../public/sounds/pong-01.wav";
 import goalSound from "../../public/sounds/pong-05.wav";
 // import hitSound from "../../public/sounds/pong-03.wav";
@@ -13,6 +14,7 @@ export default class Ball {
     this.ballColor = ballColor;
     this.padSound = new Audio(padSound);
     this.goalSound = new Audio(goalSound);
+
     //reset
     this.reset();
   }
@@ -23,19 +25,13 @@ export default class Ball {
     this.vy = 0;
     this.vx = 0;
 
-    while (this.vx === 0 && this.vy === 0) {
-      this.vx =
-        Math.floor(Math.random() * 10 - 2) *
-        this.direction[
-          (Math.floor(Math.random()), Math.floor(Math.random()) * -1)
-        ];
-      this.vy =
-        Math.floor(Math.random() * 2 - 2) *
-        this.direction[
-          (Math.floor(Math.random()), Math.floor(Math.random()) * 1)
-        ];
+    while (this.vy === 0) {
+      this.vy = Math.floor(Math.random() * 10 - 5);
     }
+    this.vx = this.direction * (6 - Math.abs(this.vy));
   }
+
+  // End of Reset function
   // Ball Bounce Functions
   wallBounce() {
     const hitLeft = this.x - this.radius <= 0;
@@ -74,7 +70,13 @@ export default class Ball {
   goal(player) {
     player.score++;
     console.log("Player score: ", player.score);
+    if (player.score < 2) {
+      this.reset();
+    } else {
+      alert("Winner");
+    }
     this.reset();
+    this.reset(player.score);
     this.goalSound.currentTime = 0;
     this.goalSound.play();
   }

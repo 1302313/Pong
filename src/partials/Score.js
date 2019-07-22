@@ -4,7 +4,7 @@ export default class Score {
   constructor(
     x,
     y,
-    scoreTextSize = 90,
+    scoreTextSize,
     fontFamily = '"Silkscreen Web"',
     scoreTextColor = "white"
   ) {

@@ -1,5 +1,7 @@
 import { SVG_NS, KEYS } from "../settings";
 
+import Ball from "./Ball";
+
 export default class Pad {
   constructor(
     boardHeight,
@@ -10,7 +12,9 @@ export default class Pad {
     speed,
     padColor,
     upKey,
-    downKey
+    downKey,
+    qKey,
+    pKey
   ) {
     this.boardHeight = boardHeight;
     this.width = width;
@@ -22,6 +26,8 @@ export default class Pad {
     this.padColor = padColor;
     this.upKey = upKey;
     this.downKey = downKey;
+    this.qKey = qKey;
+    this.pKey = pKey;
 
     // What key is being pressed?
     this.keyState = {};
@@ -32,21 +38,7 @@ export default class Pad {
     document.addEventListener("keyup", event => {
       this.keyState[event.key] = false;
     });
-
-    // Move Pad Up and Down
-    // document.addEventListener("keydown", event => {
-    //     switch (event.key) {
-    //         case up:
-    //             this.up()
-    //             console.log(this.y);
-    //             break;
-    //         case down:
-    //             this.down()
-    //             console.log(this.y);
-    //             break;
-    //     }
-    // });
-  }
+  } // constructor ends
 
   up() {
     // console.log('move up');
@@ -57,6 +49,17 @@ export default class Pad {
   down() {
     // this.y = this.y + this.speed;
     this.y = Math.min(this.boardHeight - this.height, this.y + this.speed);
+  }
+
+  q() {
+    // console.log('move up');
+    // this.y = this.y - this.speed;
+    return new Ball(12, this.width, this.height, "blue");
+  }
+
+  p() {
+    // this.y = this.y + this.speed;
+    return new Ball(12, this.width, this.height, "indigo");
   }
 
   // What to render?
@@ -76,6 +79,13 @@ export default class Pad {
 
     if (this.keyState[KEYS.down] && this.downKey === KEYS.down) {
       this.down();
+    }
+
+    if (this.keyState[KEYS.q] && this.qKey === KEYS.q) {
+      this.q();
+    }
+    if (this.keyState[KEYS.p] && this.pKey === KEYS.p) {
+      this.p();
     }
 
     // Paddle Shape and Size
